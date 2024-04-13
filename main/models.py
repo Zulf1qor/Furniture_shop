@@ -6,8 +6,6 @@ class Banner(models.Model):
     title3 = models.CharField(max_length=155)
     image = models.ImageField(upload_to='banner_photo/')
 
-
-
 class Furniture(models.Model):
     title = models.CharField(max_length=255)
     image = models.ImageField(upload_to='furtinure_photo/')
