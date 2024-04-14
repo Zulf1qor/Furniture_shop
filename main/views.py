@@ -13,8 +13,12 @@ def about_view(request):
 def blog_view(request):
     context = {
         'blog': Blog.objects.all().order_by('-id')[:6],
+        'blogbanner':BlogBanner.objects.last()
     }
     return render(request, 'blog.html', context)
+
+def blog_detail_view(request):
+    return render(request, "blog-details.html",)
 
 def contact_view(request):
     return render(request,'contact.html')
