@@ -18,7 +18,12 @@ def blog_view(request):
     return render(request, 'blog.html', context)
 
 def blog_detail_view(request):
-    return render(request, "blog-details.html",)
+    context = {
+        'blogdetails': Details.objects.last(),
+        'blogbanner':BlogBanner.objects.last()
+
+    }
+    return render(request, "blog-details.html", context)
 
 def contact_view(request):
     return render(request,'contact.html')

@@ -47,6 +47,16 @@ class Blog(models.Model):
     date = models.DateTimeField(auto_now=True)
 
 
+class Details(models.Model):
+    name = models.CharField(max_length=255)
+    image = models.ImageField(upload_to='Details_photo/')
+    title = models.CharField(max_length=255)
+    text = models.TextField()
+    description = models.CharField(max_length=255)
+
+
+
+
 class Contact(models.Model):
     phone_number = models.CharField(max_length=55)
     email = models.CharField(max_length=155)
@@ -57,64 +67,10 @@ class ShopBanner(models.Model):
     title = models.CharField(max_length=255)
     image = models.ImageField(upload_to='shopbanner/')
 
-    def save(self, *args, **kwargs):
-        super(ShopBanner, self).save(*args, **kwargs)
-        self.process_image()
-
-    def process_image(self):
-        try:
-            # Open the image
-            img = Image.open(self.image.path)
-
-            # Check if the image dimensions are within the specified range
-            width, height = img.size
-            if width < 1920 or height < 1080:
-                # Resize the image to fit within the specified range while maintaining aspect ratio
-                img.thumbnail((1920, 1080))
-                img.save(self.image.path)  # Overwrite the original image with the resized one
-
-            elif width > 300 or height > 300:
-                # Resize the image to fit within the specified range while maintaining aspect ratio
-                img.thumbnail((300, 300))
-                img.save(self.image.path)  # Overwrite the original image with the resized one
-
-            # Optionally return the processed image or just confirm it's processed
-            return "Image processed successfully."
-
-        except IOError:
-            return "Unable to process image. Please check the file path or format."
-
 
 class AboutBanner(models.Model):
     title = models.CharField(max_length=255)
     image = models.ImageField(upload_to='shopbanner/')
-
-    def save(self, *args, **kwargs):
-        super(ShopBanner, self).save(*args, **kwargs)
-        self.process_image()
-
-    def process_image(self):
-        try:
-            # Open the image
-            img = Image.open(self.image.path)
-
-            # Check if the image dimensions are within the specified range
-            width, height = img.size
-            if width < 1920 or height < 1080:
-                # Resize the image to fit within the specified range while maintaining aspect ratio
-                img.thumbnail((1920, 1080))
-                img.save(self.image.path)  # Overwrite the original image with the resized one
-
-            elif width > 300 or height > 300:
-                # Resize the image to fit within the specified range while maintaining aspect ratio
-                img.thumbnail((300, 300))
-                img.save(self.image.path)  # Overwrite the original image with the resized one
-
-            # Optionally return the processed image or just confirm it's processed
-            return "Image processed successfully."
-
-        except IOError:
-            return "Unable to process image. Please check the file path or format."
 
 
 class BlogBanner(models.Model):
@@ -127,29 +83,3 @@ class ContactBanner(models.Model):
     title = models.CharField(max_length=255)
     image = models.ImageField(upload_to='shopbanner/')
 
-    def save(self, *args, **kwargs):
-        super(ShopBanner, self).save(*args, **kwargs)
-        self.process_image()
-
-    def process_image(self):
-        try:
-            # Open the image
-            img = Image.open(self.image.path)
-
-            # Check if the image dimensions are within the specified range
-            width, height = img.size
-            if width < 1920 or height < 1080:
-                # Resize the image to fit within the specified range while maintaining aspect ratio
-                img.thumbnail((1920, 1080))
-                img.save(self.image.path)  # Overwrite the original image with the resized one
-
-            elif width > 300 or height > 300:
-                # Resize the image to fit within the specified range while maintaining aspect ratio
-                img.thumbnail((300, 300))
-                img.save(self.image.path)  # Overwrite the original image with the resized one
-
-            # Optionally return the processed image or just confirm it's processed
-            return "Image processed successfully."
-
-        except IOError:
-            return "Unable to process image. Please check the file path or format."
