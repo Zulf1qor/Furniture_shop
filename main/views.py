@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from .models import *
 
 def index_view(request):
@@ -20,7 +20,10 @@ def blog_view(request):
 def blog_detail_view(request):
     context = {
         'blogdetails': Details.objects.last(),
-        'blogbanner':BlogBanner.objects.last()
+        'blogbanner':BlogBanner.objects.last(),
+        'category':Category.objects.all().order_by('-id')[:5],
+        'furniture':Furniture.objects.all().order_by('-id')[:3],
+        'comment':Comment.objects.all().order_by('-id')[:3]
 
     }
     return render(request, "blog-details.html", context)
@@ -39,3 +42,16 @@ def my_account(request):
 
 def wishlist_view(request):
     return render(request,'wishlist.html')
+
+
+def create_comment(request, pk):
+    blog = Blog.objects.get(pk=pk)
+    if request.method == "POST":
+        name = request.POST['name']  # Retrieve the name from the form
+        text = request.POST['text']
+        Comment.objects.create(
+            blog=blog,  # Associate the comment with the blog post
+            name=name,
+            text=text,
+        )
+    return redirect('blog-detail_url', pk=blog.pk)

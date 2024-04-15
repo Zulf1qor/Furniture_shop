@@ -55,6 +55,10 @@ class Details(models.Model):
     description = models.CharField(max_length=255)
 
 
+class Comment(models.Model):
+    name = models.CharField(max_length=55)
+    data = models.DateTimeField(auto_now=True)
+    comment = models.CharField(max_length=255)
 
 
 class Contact(models.Model):
