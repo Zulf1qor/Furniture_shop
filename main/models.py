@@ -74,16 +74,16 @@ class ShopBanner(models.Model):
 
 class AboutBanner(models.Model):
     title = models.CharField(max_length=255)
-    image = models.ImageField(upload_to='shopbanner/')
+    image = models.ImageField(upload_to='aboutbanner/')
 
 
 class BlogBanner(models.Model):
     title = models.CharField(max_length=255)
-    image = models.ImageField(upload_to='shopbanner/')
+    image = models.ImageField(upload_to='blogbanner/')
 
 
 
 class ContactBanner(models.Model):
     title = models.CharField(max_length=255)
-    image = models.ImageField(upload_to='shopbanner/')
+    image = models.ImageField(upload_to='contactbanner/')
 

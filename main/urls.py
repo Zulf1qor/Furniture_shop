@@ -12,6 +12,5 @@ urlpatterns = [
     path('login', login_view, name='login_url'),
     path('my-account', my_account, name='my_account_url'),
     path('wishlist', wishlist_view, name='wishlist_url'),
-    path('create_comment/<int:pk>/', create_comment, name='create_comment_url')
 
 ]

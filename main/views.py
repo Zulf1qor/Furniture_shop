@@ -8,6 +8,9 @@ def shop_view(request):
     return render(request,'shop.html')
 
 def about_view(request):
+    context = {
+        'aboutbanner':AboutBanner.objects.last()
+    }
     return render(request,'about.html')
 
 def blog_view(request):
@@ -44,14 +47,3 @@ def wishlist_view(request):
     return render(request,'wishlist.html')
 
 
-def create_comment(request, pk):
-    blog = Blog.objects.get(pk=pk)
-    if request.method == "POST":
-        name = request.POST['name']  # Retrieve the name from the form
-        text = request.POST['text']
-        Comment.objects.create(
-            blog=blog,  # Associate the comment with the blog post
-            name=name,
-            text=text,
-        )
-    return redirect('blog-detail_url', pk=blog.pk)
