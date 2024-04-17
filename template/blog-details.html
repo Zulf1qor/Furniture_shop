@@ -69,9 +69,6 @@
                                     <div class="reviews__comment--inner">
                                         {% for i in comment %}
                                         <div class="reviews__comment--list d-flex">
-                                            <div class="reviews__comment--thumbnail">
-                                                <img src="assets/img/other/comment-thumb1.webp" alt="comment-thumbnail">
-                                            </div>
                                             <div class="reviews__comment--content ">
                                                 <h4 class="reviews__comment--content__title2">{{ i.name }}</h4>
                                                 <span class="reviews__comment--content__date2">{{ i.data }}</span>
@@ -82,17 +79,17 @@
                                     </div>
                                 </div>
                                 <div class="reviews__comment--reply__area">
-                                    <form action="" >
-                                        <h3 class="reviews__comment--reply__title mb-20">Leave A Comment</h3>
+                                    <h3 class="reviews__comment--reply__title mb-20">Leave A Comment</h3>
+                                    <form action="{% url 'create_comment_url' blog.pk %}" method="post">
+                                         {% csrf_token %}
                                         <div class="row">
-                                            {% csrf_token %}
                                             <div class="col-lg-4 col-md-6 mb-20">
                                                 <label>
-                                                    <input class="reviews__comment--reply__input" placeholder="Your Name...." type="text">
+                                                    <input class="reviews__comment--reply__input" name="name" placeholder="Your Name...." type="text">
                                                 </label>
                                             </div>
                                             <div class="col-12 mb-15">
-                                                <textarea class="reviews__comment--reply__textarea" placeholder="Your Comments...." ></textarea>
+                                                <textarea class="reviews__comment--reply__textarea" name="comment" placeholder="Your Comments...." ></textarea>
                                             </div>
 
                                         </div>

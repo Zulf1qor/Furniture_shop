@@ -20,8 +20,10 @@ def blog_view(request):
     }
     return render(request, 'blog.html', context)
 
-def blog_detail_view(request):
+def blog_detail_view(request, pk):
+    blog = Blog.objects.get(pk=pk)
     context = {
+        'blog':blog,
         'blogdetails': Details.objects.last(),
         'blogbanner':BlogBanner.objects.last(),
         'category':Category.objects.all().order_by('-id')[:5],
@@ -46,4 +48,16 @@ def my_account(request):
 def wishlist_view(request):
     return render(request,'wishlist.html')
 
+
+def create_comment_view(request, pk):
+    blog = Blog.objects.get(pk=pk)
+    if request.method == "POST":
+        comment = request.POST['comment']
+        name = request.POST['name']
+        Comment.objects.create(
+            name = name,
+            comment = comment,
+
+        )
+        return redirect('blog-detail_url', blog.id)
 

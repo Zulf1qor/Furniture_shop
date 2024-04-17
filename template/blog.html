@@ -151,7 +151,7 @@
                                     </ul>
                                     <h3 class="blog__content--title h4"><a href="blog-details.html">{{ i.title }}</a></h3>
                                     <p class="blog__content--desc">{{ i.description }}</p>
-                                    <a class="blog__content--btn primary__btn" href="blog-detail">Read more </a>
+                                    <a class="blog__content--btn primary__btn" href="{% url 'blog-detail_url' i.pk %}">Read more </a>
                                 </div>
                             </div>
                         </div>
