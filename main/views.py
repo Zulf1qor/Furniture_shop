@@ -9,9 +9,11 @@ def shop_view(request):
 
 def about_view(request):
     context = {
-        'aboutbanner':AboutBanner.objects.last()
+        'aboutbanner':AboutBanner.objects.last(),
+        'about': About.objects.last(),
+        'brand':Brand.objects.order_by('-id')[:5]
     }
-    return render(request,'about.html')
+    return render(request,'about.html', context)
 
 def blog_view(request):
     context = {
