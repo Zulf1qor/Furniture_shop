@@ -21,7 +21,7 @@ class Items(models.Model):
 
 
 class Image(models.Model):
-    Image = models.ImageField(upload_to='Image/')
+    Photo = models.ImageField(upload_to='Image1/')
 
 
 class About(models.Model):
