@@ -2,7 +2,14 @@ from django.shortcuts import render,redirect
 from .models import *
 
 def index_view(request):
-    return render(request,'index.html')
+    context = {
+        'banner':Banner.objects.last(),
+        'furniture':Furniture.objects.order_by('-id')[:2],
+        'item':Items.objects.order_by('-id')[:10],
+        'blog':Blog.objects.order_by('-id')[:5],
+        'image':Image.objects.order_by('-id')[:8]
+    }
+    return render(request,'index.html', context)
 
 def shop_view(request):
     return render(request,'shop.html')

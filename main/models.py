@@ -15,7 +15,8 @@ class Furniture(models.Model):
 class Items(models.Model):
     name = models.CharField(max_length=255)
     image = models.ImageField(upload_to='items_photo/')
-    old_price = models.DecimalField(decimal_places=2, max_digits=10)
+    image2 = models.ImageField(upload_to='items_photo2/')
+    old_price = models.DecimalField(decimal_places=2, max_digits=10, null=True, blank=True)
     new_price = models.DecimalField(decimal_places=2, max_digits=10)
 
 
